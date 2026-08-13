@@ -87,7 +87,6 @@
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
         }
 
-        /* Pantalla de Carga / Animación Inicial (2 segundos) */
         #splash-screen {
             position: fixed;
             inset: 0;
@@ -118,7 +117,7 @@
 </head>
 <body class="min-h-screen flex flex-col relative uppercase tracking-wider">
 
-    <!-- Pantalla de Carga / Animación Inicial (2 segundos) -->
+    <!-- Pantalla de Carga -->
     <div id="splash-screen">
         <div class="flex flex-col items-center gap-4">
             <img src="logo.jpeg" alt="AXUL STORE Logo" class="splash-logo w-28 h-28 md:w-36 md:h-36 object-cover rounded-2xl border-2 border-gamer-neon">
@@ -134,17 +133,16 @@
     <!-- Header / Navbar -->
     <header class="glass-panel sticky top-0 z-40 p-4 border-b border-gamer-neon/30">
         <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo AXUL STORE -->
             <div class="flex items-center gap-3">
                 <img src="logo.jpeg" alt="Logo AXUL STORE" class="w-14 h-14 md:w-16 md:h-16 object-cover rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.7)] border border-gamer-neon">
                 <h1 class="text-2xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h1>
             </div>
             
-            <!-- Pestañas de navegación -->
             <nav class="hidden md:flex gap-6 font-semibold items-center">
                 <a href="#juegos" class="nav-link active">Juegos PS4/PS5</a>
                 <a href="#ps-plus" class="nav-link">PS Plus</a>
                 <a href="#torneos" class="nav-link">Torneos</a>
+                <a href="#streaming" class="nav-link">Streaming</a>
                 <a href="https://www.instagram.com/axulstorearg" target="_blank" class="text-white hover:text-gamer-neon transition-colors font-bold border border-white/20 px-3 py-1 rounded-lg">
                     @AXULSTOREARG
                 </a>
@@ -296,7 +294,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE TORNEOS (FC26 con fc26.jpg) -->
+    <!-- SECCIÓN DE TORNEOS -->
     <section id="torneos" class="py-16 container mx-auto px-4 z-10 border-t border-gamer-neon/30 mt-10">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white glow-text">🏆 Zona de <span class="text-gamer-neon">Torneos</span></h2>
@@ -305,31 +303,25 @@
 
         <div class="max-w-4xl mx-auto">
             <div class="glass-panel rounded-2xl p-6 md:p-8 border-2 border-gamer-neon shadow-[0_0_30px_rgba(0,240,255,0.3)] relative overflow-hidden">
-                
-                <!-- PREMIO DESTACADO -->
                 <div class="absolute top-0 right-0 bg-gold text-black font-extrabold px-6 py-2 rounded-bl-2xl shadow-[0_0_15px_rgba(255,215,0,0.8)] text-sm md:text-base tracking-widest animate-pulse">
                     PREMIO: $50.000
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <!-- Imagen fc26.jpg del Torneo -->
                     <div>
                         <img src="fc26.jpg" alt="EA Sports FC 26" class="rounded-xl shadow-[0_0_25px_rgba(0,240,255,0.5)] border border-gamer-neon w-full h-64 object-cover">
                     </div>
 
-                    <!-- Información y Reglas del Torneo -->
                     <div class="space-y-4">
                         <span class="bg-gamer-blue/30 text-gamer-neon border border-gamer-blue px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Torneo Oficial</span>
                         <h3 class="text-3xl font-extrabold text-white tracking-widest glow-text">FC 26</h3>
                         
-                        <!-- Instrucciones -->
                         <div class="bg-black/60 p-4 rounded-xl border border-gray-800 space-y-2 text-sm text-gray-300 tracking-normal">
                             <p class="font-bold text-gamer-neon">📌 Instrucciones del Torneo:</p>
                             <p>• Formato <strong class="text-white">individual</strong> (1 vs 1).</p>
                             <p>• Modalidad en <strong class="text-white">modo de llaves directas</strong>.</p>
                         </div>
 
-                        <!-- Precio e Inscripción -->
                         <div class="flex items-center justify-between pt-2">
                             <div>
                                 <p class="text-gray-400 text-xs">Inscripción</p>
@@ -345,6 +337,153 @@
         </div>
     </section>
 
+    <!-- SECCIÓN DE STREAMING CON LOGOS ASEGURADOS -->
+    <section id="streaming" class="py-16 container mx-auto px-4 z-10 border-t border-gamer-neon/30 mt-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white glow-text">🎬 Perfiles <span class="text-gamer-neon">Disponibles</span></h2>
+            <p class="text-gray-400 tracking-normal">Disfruta de tus series y pelis favoritas con entrega inmediata.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <!-- YouTube -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-red-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                        <svg class="w-7 h-7 text-white fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">YOUTUBE PREMIUM</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$6.500</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20YouTube%20Premium%20por%20$6.500" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+
+            <!-- Netflix -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-black border border-red-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                        <span class="text-red-600 font-extrabold text-xl tracking-tighter">N</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">NETFLIX EXTRA</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$10.800</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Netflix%20Extra%20por%20$10.800" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+
+            <!-- Disney -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-blue-900 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(30,58,138,0.5)]">
+                        <span class="text-white font-bold text-xs">DISNEY+</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">DISNEY PREMIUM</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$7.500</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Disney%20Premium%20por%20$7.500" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+
+            <!-- HBO Max -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-purple-900 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(107,33,168,0.5)]">
+                        <span class="text-white font-black text-xs">MAX</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">HBO MAX</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$6.000</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20HBO%20Max%20por%20$6.000" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+
+            <!-- Prime Video -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-cyan-950 border border-cyan-500 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+                        <span class="text-cyan-400 font-bold text-xs">PRIME</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">PRIME VIDEO</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$6.200</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Prime%20Video%20por%20$6.200" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+
+            <!-- Vix -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-orange-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(234,88,12,0.5)]">
+                        <span class="text-white font-black text-xs">VIX</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">VIX</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$8.500</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Vix%20por%20$8.500" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+
+            <!-- Flujo TV -->
+            <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all md:col-span-2 lg:col-span-3 max-w-md mx-auto w-full">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(37,99,235,0.5)]">
+                        <span class="text-xl">📺</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">1 MES 3 DISPOSITIVOS FLUJO TV</h4>
+                        <p class="text-gamer-neon font-bold text-lg">$10.500</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Flujo%20TV%20por%20$10.500" target="_blank" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+            </div>
+        </div>
+
+        <!-- COMBOS -->
+        <div class="mt-16 max-w-4xl mx-auto">
+            <h3 class="text-2xl font-bold text-center mb-6 glow-text text-white">🚨 <span class="text-red-500">Combos</span> Disponibles 🚨</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-xl border border-red-500/30 text-center flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">COMBO DESEOS</h4>
+                        <p class="text-xs text-gray-400 mb-4 tracking-normal">Netflix Extra + Prime Video + HBO Max + Disney Premium</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white mb-4">$19.300</p>
+                        <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20el%20Combo%20Deseos%20por%20$19.300" target="_blank" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm block">Comprar Combo</a>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl border border-red-500/30 text-center flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">COMBO FLASH</h4>
+                        <p class="text-xs text-gray-400 mb-4 tracking-normal">Netflix Extra + Max + Prime</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white mb-4">$17.500</p>
+                        <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20el%20Combo%20Flash%20por%20$17.500" target="_blank" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm block">Comprar Combo</a>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl border border-red-500/30 text-center flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">COMBO ESPACIAL</h4>
+                        <p class="text-xs text-gray-400 mb-4 tracking-normal">Netflix Extra + Disney Premium</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white mb-4">$12.800</p>
+                        <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20el%20Combo%20Espacial%20por%20$12.800" target="_blank" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm block">Comprar Combo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer Simple -->
     <footer class="glass-panel py-6 mt-8 z-10 border-t border-gamer-neon/30">
         <div class="container mx-auto px-4 text-center text-gray-400 text-xs">
@@ -352,13 +491,12 @@
         </div>
     </footer>
 
-    <!-- Script de Animación Inicial y Navegación -->
     <script>
         window.addEventListener("load", () => {
             const splashScreen = document.getElementById("splash-screen");
             setTimeout(() => {
                 splashScreen.classList.add("fade-out");
-            }, 2000); // 2 segundos exactos
+            }, 2000);
         });
 
         const sections = document.querySelectorAll("section[id]");
