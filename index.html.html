@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXUL STORE - PS Plus, Juegos y Torneos</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gamer: {
+                            dark: '#030308',
+                            card: '#0b0c16',
+                            blue: '#0055ff',
+                            neon: '#00f0ff',
+                            purple: '#7000ff'
+                        },
+                        bronze: '#cd7f32',
+                        silver: '#c0c0c0',
+                        gold: '#ffd700'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            background-color: #030308;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(112, 0, 255, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(0, 85, 255, 0.15) 0%, transparent 60%),
+                linear-gradient(to right, rgba(3, 3, 8, 0.92), rgba(3, 3, 8, 0.92)),
+                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0, 240, 255, 0.03) 40px, rgba(0, 240, 255, 0.03) 41px),
+                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(112, 0, 255, 0.03) 40px, rgba(112, 0, 255, 0.03) 41px);
+            background-attachment: fixed;
+            color: white; 
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+        }
+
+        .glow-text { 
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 85, 255, 0.6); 
+        }
+
+        .glass-panel { 
+            background: rgba(11, 12, 22, 0.75); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .card-bronze:hover { box-shadow: 0 0 35px rgba(205, 127, 50, 0.7); border-color: #cd7f32; transform: translateY(-5px); }
+        .card-silver:hover { box-shadow: 0 0 35px rgba(192, 192, 192, 0.7); border-color: #c0c0c0; transform: translateY(-5px); }
+        .card-gold:hover { box-shadow: 0 0 35px rgba(255, 215, 0, 0.7); border-color: #ffd700; transform: translateY(-5px); }
+
+        .scanline {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.3;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #00f0ff;
+            border-bottom: 2px solid #00f0ff;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+        }
+
+        /* Pantalla de Carga / Animación Inicial (2 segundos) */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #030308;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(0.85); opacity: 0.5; box-shadow: 0 0 15px rgba(0,240,255,0.3); }
+            50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 35px rgba(0,240,255,0.8); }
+            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 25px rgba(0,240,255,0.6); }
+        }
+
+        .splash-logo {
+            animation: pulseLogo 2s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative uppercase tracking-wider">
+
+    <!-- Pantalla de Carga / Animación Inicial (2 segundos) -->
+    <div id="splash-screen">
+        <div class="flex flex-col items-center gap-4">
+            <img src="logo.jpeg" alt="AXUL STORE Logo" class="splash-logo w-28 h-28 md:w-36 md:h-36 object-cover rounded-2xl border-2 border-gamer-neon">
+            <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h2>
+            <div class="w-36 h-1 bg-gray-800 rounded-full overflow-hidden mt-2">
+                <div class="bg-gamer-neon h-full animate-[pulse_1s_infinite]" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scanline"></div>
+
+    <!-- Header / Navbar -->
+    <header class="glass-panel sticky top-0 z-40 p-4 border-b border-gamer-neon/30">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo AXUL STORE -->
+            <div class="flex items-center gap-3">
+                <img src="logo.jpeg" alt="Logo AXUL STORE" class="w-14 h-14 md:w-16 md:h-16 object-cover rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.7)] border border-gamer-neon">
+                <h1 class="text-2xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h1>
+            </div>
+            
+            <!-- Pestañas de navegación -->
+            <nav class="hidden md:flex gap-6 font-semibold items-center">
+                <a href="#juegos" class="nav-link active">Juegos PS4/PS5</a>
+                <a href="#ps-plus" class="nav-link">PS Plus</a>
+                <a href="#torneos" class="nav-link">Torneos</a>
+                <a href="https://www.instagram.com/axulstorearg" target="_blank" class="text-white hover:text-gamer-neon transition-colors font-bold border border-white/20 px-3 py-1 rounded-lg">
+                    @AXULSTOREARG
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Juegos PS4/PS5 -->
+    <section id="juegos" class="relative pt-12 pb-12 overflow-hidden z-10">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white glow-text">Juegos PS4 / PS5</h2>
+            <p class="text-gamer-neon text-lg mb-10 max-w-2xl mx-auto tracking-normal font-bold">Consultar disponibilidad de cualquier titulo al chat de whatsapp</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/1c7b75d8ed9271516546560d219ad0b22ee0a263b4537bd8.png" alt="Spider-Man 2" class="rounded-xl shadow-[0_0_25px_rgba(0,85,255,0.6)] border-2 border-gamer-blue hover:border-gamer-neon hover:scale-105 transition-all duration-300 h-80 w-full object-cover">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png" alt="God of War Ragnarok" class="rounded-xl shadow-[0_0_25px_rgba(0,85,255,0.6)] border-2 border-gamer-blue hover:border-gamer-neon hover:scale-105 transition-all duration-300 h-80 w-full object-cover">
+            </div>
+
+            <div class="inline-block">
+                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20consultar%20disponibilidad%20de%20un%20juego" target="_blank" class="bg-gamer-neon hover:bg-cyan-400 text-black px-8 py-3 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(0,240,255,0.6)] inline-block">
+                    Consultar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección PS Plus Pricing -->
+    <section id="ps-plus" class="py-10 container mx-auto px-4 flex-grow z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-2 text-white glow-text">Membresías <span class="text-gamer-neon">PlayStation Plus</span></h2>
+            <p class="text-gray-400 tracking-normal">Selecciona el plan que mejor se adapte a ti y pídela directo por WhatsApp.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            <!-- ESSENTIAL -->
+            <div class="glass-panel rounded-2xl p-1 border-t-4 border-bronze card-bronze transition-all duration-300">
+                <div class="bg-gamer-card/90 p-6 h-full flex flex-col rounded-xl">
+                    <div class="text-center mb-6">
+                        <span class="text-4xl drop-shadow-[0_0_10px_rgba(205,127,50,0.8)]">🥉</span>
+                        <h3 class="text-2xl font-bold mt-2 text-white tracking-widest">ESSENTIAL</h3>
+                        <p class="text-xs text-gray-400 mt-1 tracking-normal">Juegos mensuales, multijugador online y descuentos.</p>
+                    </div>
+                    
+                    <div class="flex-grow space-y-4">
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
+                            <div>
+                                <p class="text-gray-400 text-xs">1 Mes</p>
+                                <p class="text-xl font-bold text-white">$12.500</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20ESSENTIAL%20de%201%20Mes%20por%20$12.500" target="_blank" class="bg-gray-800 hover:bg-bronze text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                        </div>
+                        
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
+                            <div>
+                                <p class="text-gray-400 text-xs">3 Meses</p>
+                                <p class="text-xl font-bold text-white">$28.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20ESSENTIAL%20de%203%20Meses%20por%20$28.900" target="_blank" class="bg-gray-800 hover:bg-bronze text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                        </div>
+                        
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-bronze/70 relative overflow-hidden shadow-[inset_0_0_15px_rgba(205,127,50,0.2)]">
+                            <div class="absolute top-0 right-0 bg-bronze text-xs font-bold px-2 py-1 rounded-bl-lg text-black">Mejor valor</div>
+                            <div>
+                                <p class="text-gray-400 text-xs">12 Meses</p>
+                                <p class="text-xl font-bold text-white">$49.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20ESSENTIAL%20de%2012%20Meses%20por%20$49.900" target="_blank" class="bg-bronze hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_10px_rgba(205,127,50,0.5)]">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXTRA -->
+            <div class="glass-panel rounded-2xl p-1 border-t-4 border-silver card-silver transition-all duration-300 md:-translate-y-4 relative z-20 shadow-[0_15px_40px_rgba(0,240,255,0.2)]">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-silver text-black text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-[0_0_15px_rgba(192,192,192,0.8)]">Más Popular</div>
+                <div class="bg-gamer-card/90 p-6 h-full flex flex-col rounded-xl mt-1">
+                    <div class="text-center mb-6">
+                        <span class="text-4xl drop-shadow-[0_0_10px_rgba(192,192,192,0.8)]">🥈</span>
+                        <h3 class="text-2xl font-bold mt-2 text-white tracking-widest">EXTRA</h3>
+                        <p class="text-xs text-gray-400 mt-1 tracking-normal">Todo lo de Essential + Catálogo de cientos de juegos.</p>
+                    </div>
+                    
+                    <div class="flex-grow space-y-4">
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
+                            <div>
+                                <p class="text-gray-400 text-xs">1 Mes</p>
+                                <p class="text-xl font-bold text-white">$20.500</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20EXTRA%20de%201%20Mes%20por%20$20.500" target="_blank" class="bg-gray-800 hover:bg-silver hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                        </div>
+                        
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
+                            <div>
+                                <p class="text-gray-400 text-xs">3 Meses</p>
+                                <p class="text-xl font-bold text-white">$37.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20EXTRA%20de%203%20Meses%20por%20$37.900" target="_blank" class="bg-gray-800 hover:bg-silver hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                        </div>
+                        
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-silver/70 shadow-[inset_0_0_15px_rgba(192,192,192,0.2)]">
+                            <div>
+                                <p class="text-gray-400 text-xs">12 Meses</p>
+                                <p class="text-xl font-bold text-white">$69.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20EXTRA%20de%2012%20Meses%20por%20$69.900" target="_blank" class="bg-silver text-black hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(192,192,192,0.6)]">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DELUXE -->
+            <div class="glass-panel rounded-2xl p-1 border-t-4 border-gold card-gold transition-all duration-300">
+                <div class="bg-gamer-card/90 p-6 h-full flex flex-col rounded-xl">
+                    <div class="text-center mb-6">
+                        <span class="text-4xl drop-shadow-[0_0_10px_rgba(255,215,0,0.8)]">🥇</span>
+                        <h3 class="text-2xl font-bold mt-2 text-white tracking-widest">DELUXE</h3>
+                        <p class="text-xs text-gray-400 mt-1 tracking-normal">Beneficios completos: clásicos y pruebas de juegos.</p>
+                    </div>
+                    
+                    <div class="flex-grow space-y-4">
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
+                            <div>
+                                <p class="text-gray-400 text-xs">1 Mes</p>
+                                <p class="text-xl font-bold text-white">$25.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20DELUXE%20de%201%20Mes%20por%20$25.900" target="_blank" class="bg-gray-800 hover:bg-gold hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                        </div>
+                        
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
+                            <div>
+                                <p class="text-gray-400 text-xs">3 Meses</p>
+                                <p class="text-xl font-bold text-white">$43.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20DELUXE%20de%203%20Meses%20por%20$43.900" target="_blank" class="bg-gray-800 hover:bg-gold hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                        </div>
+                        
+                        <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gold/70 shadow-[inset_0_0_15px_rgba(255,215,0,0.2)]">
+                            <div>
+                                <p class="text-gray-400 text-xs">12 Meses</p>
+                                <p class="text-xl font-bold text-white">$79.900</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20DELUXE%20de%2012%20Meses%20por%20$79.900" target="_blank" class="bg-gold text-black hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(255,215,0,0.6)]">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE TORNEOS (FC26 con fc26.jpg) -->
+    <section id="torneos" class="py-16 container mx-auto px-4 z-10 border-t border-gamer-neon/30 mt-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white glow-text">🏆 Zona de <span class="text-gamer-neon">Torneos</span></h2>
+            <p class="text-gray-400 tracking-normal">Demuestra tu nivel, compite de forma individual y gana premios increíbles.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-2xl p-6 md:p-8 border-2 border-gamer-neon shadow-[0_0_30px_rgba(0,240,255,0.3)] relative overflow-hidden">
+                
+                <!-- PREMIO DESTACADO -->
+                <div class="absolute top-0 right-0 bg-gold text-black font-extrabold px-6 py-2 rounded-bl-2xl shadow-[0_0_15px_rgba(255,215,0,0.8)] text-sm md:text-base tracking-widest animate-pulse">
+                    PREMIO: $50.000
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Imagen fc26.jpg del Torneo -->
+                    <div>
+                        <img src="fc26.jpg" alt="EA Sports FC 26" class="rounded-xl shadow-[0_0_25px_rgba(0,240,255,0.5)] border border-gamer-neon w-full h-64 object-cover">
+                    </div>
+
+                    <!-- Información y Reglas del Torneo -->
+                    <div class="space-y-4">
+                        <span class="bg-gamer-blue/30 text-gamer-neon border border-gamer-blue px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Torneo Oficial</span>
+                        <h3 class="text-3xl font-extrabold text-white tracking-widest glow-text">FC 26</h3>
+                        
+                        <!-- Instrucciones -->
+                        <div class="bg-black/60 p-4 rounded-xl border border-gray-800 space-y-2 text-sm text-gray-300 tracking-normal">
+                            <p class="font-bold text-gamer-neon">📌 Instrucciones del Torneo:</p>
+                            <p>• Formato <strong class="text-white">individual</strong> (1 vs 1).</p>
+                            <p>• Modalidad en <strong class="text-white">modo de llaves directas</strong>.</p>
+                        </div>
+
+                        <!-- Precio e Inscripción -->
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <p class="text-gray-400 text-xs">Inscripción</p>
+                                <p class="text-2xl font-extrabold text-gold">$10.000</p>
+                            </div>
+                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20inscribirme%20al%20torneo%20individual%20de%20FC26%20por%20$10.000" target="_blank" class="bg-gamer-neon hover:bg-cyan-400 text-black px-6 py-3 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(0,240,255,0.6)]">
+                                Inscribirse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Simple -->
+    <footer class="glass-panel py-6 mt-8 z-10 border-t border-gamer-neon/30">
+        <div class="container mx-auto px-4 text-center text-gray-400 text-xs">
+            <p>&copy; 2026 AXUL STORE. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script de Animación Inicial y Navegación -->
+    <script>
+        window.addEventListener("load", () => {
+            const splashScreen = document.getElementById("splash-screen");
+            setTimeout(() => {
+                splashScreen.classList.add("fade-out");
+            }, 2000); // 2 segundos exactos
+        });
+
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll("nav a[href^='#']");
+
+        const observerOptions = {
+            root: null,
+            rootMargin: "-30% 0px -50% 0px",
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute("id");
+                    navLinks.forEach(link => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href") === `#${id}`) {
+                            link.classList.add("active");
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                navLinks.forEach(nav => nav.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
