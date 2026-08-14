@@ -131,6 +131,22 @@
             transform: translateX(0);
         }
 
+        /* --- ESTILOS DEL MENÚ MÓVIL (HAMBURGUESA) --- */
+        #mobile-menu {
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            opacity: 0;
+            visibility: hidden;
+            background: rgba(3, 3, 8, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid #00f0ff;
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Esquinas estilo sci-fi / cyberpunk */
         .gamer-hud-box {
             position: relative;
@@ -198,7 +214,7 @@
 
     <div class="scanline"></div>
 
-    <!-- Botón Flotante Estilo HUD Gamer -->
+    <!-- Botón Flotante Estilo HUD Gamer (Carrito) -->
     <button onclick="toggleCart()" class="fixed bottom-6 right-6 z-50 bg-gamer-card border-2 border-gamer-neon hover:border-gamer-purple text-gamer-neon p-4 rounded-xl shadow-[0_0_25px_rgba(0,240,255,0.4)] transition-all duration-300 hover:scale-110 flex items-center justify-center font-bold group" aria-label="Abrir Carrito">
         <svg class="w-7 h-7 fill-current group-hover:text-gamer-purple transition-colors" viewBox="0 0 24 24">
             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
@@ -243,10 +259,11 @@
     <header class="glass-panel sticky top-0 z-40 p-4 border-b border-gamer-neon/30">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="logo.jpeg" alt="Logo AXUL STORE" class="w-14 h-14 md:w-16 md:h-16 object-cover rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.7)] border border-gamer-neon">
-                <h1 class="text-2xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h1>
+                <img src="logo.jpeg" alt="Logo AXUL STORE" class="w-12 h-12 md:w-16 md:h-16 object-cover rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.7)] border border-gamer-neon">
+                <h1 class="text-xl md:text-2xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h1>
             </div>
             
+            <!-- Navegación de Escritorio -->
             <nav class="hidden md:flex gap-6 font-semibold items-center">
                 <a href="#juegos" class="nav-link active">Juegos PS4/PS5</a>
                 <a href="#ps-plus" class="nav-link">PS Plus</a>
@@ -257,8 +274,31 @@
                     @AXULSTOREARG
                 </a>
             </nav>
+
+            <!-- Botón Menú Hamburguesa para Móviles -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gamer-neon border border-gamer-neon/50 p-2.5 rounded-xl gamer-hud-box flex items-center justify-center focus:outline-none" aria-label="Abrir Menú">
+                <svg id="menu-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
         </div>
     </header>
+
+    <!-- Menú Desplegable de Hamburguesa para Móviles -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-[73px] z-30 md:hidden flex flex-col p-6 space-y-4 shadow-2xl">
+        <div class="flex flex-col space-y-3 font-semibold text-center">
+            <a href="#juegos" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10 active">Juegos PS4/PS5</a>
+            <a href="#ps-plus" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">PS Plus</a>
+            <a href="#torneos" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Torneos</a>
+            <a href="#streaming" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Streaming</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">FAQ</a>
+        </div>
+        <div class="pt-2">
+            <a href="https://www.instagram.com/axulstorearg" target="_blank" rel="noopener noreferrer" class="block text-center text-gamer-neon font-bold border border-gamer-neon/40 py-3 rounded-xl bg-gamer-card shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                INSTAGRAM: @AXULSTOREARG
+            </a>
+        </div>
+    </div>
 
     <!-- Sección Juegos PS4/PS5 -->
     <section id="juegos" class="relative pt-12 pb-12 overflow-hidden z-10">
@@ -631,6 +671,22 @@
         function toggleCart() {
             const sidebar = document.getElementById("cart-sidebar");
             sidebar.classList.toggle("open");
+            // Si el menú móvil está abierto, ciérralo al abrir el carrito
+            document.getElementById("mobile-menu").classList.remove("open");
+        }
+
+        // Lógica del Menú Hamburguesa para Móviles
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById("mobile-menu");
+            const menuIcon = document.getElementById("menu-icon");
+            mobileMenu.classList.toggle("open");
+            
+            // Cambiar icono de hamburguesa a "X" y viceversa
+            if (mobileMenu.classList.contains("open")) {
+                menuIcon.innerHTML = '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>';
+            } else {
+                menuIcon.innerHTML = '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>';
+            }
         }
 
         function addToCart(name, price) {
@@ -642,6 +698,7 @@
             }
             updateCartUI();
             document.getElementById("cart-sidebar").classList.add("open");
+            document.getElementById("mobile-menu").classList.remove("open");
         }
 
         function removeFromCart(index) {
@@ -726,7 +783,7 @@
 
         // Intersection Observer optimizado para la navegación
         const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll("nav a[href^='#']");
+        const navLinks = document.querySelectorAll("nav a[href^='#'], #mobile-menu a[href^='#']");
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -746,4 +803,3 @@
     </script>
 </body>
 </html>
-```[cite: 1]
