@@ -504,7 +504,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$3.500</p>
                     </div>
                 </div>
-                <button onclick="addToCart('YouTube Premium', 6500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
+                <button onclick="addToCart('YouTube Premium', 3500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- Netflix -->
@@ -592,42 +592,109 @@
             </div>
         </div>
 
-        <!-- COMBOS -->
-        <div class="mt-16 max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold text-center mb-6 glow-text text-white">🚨 <span class="text-red-500">Combos</span> Disponibles 🚨</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-panel p-6 rounded-xl border border-red-500/30 text-center flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-lg mb-2">COMBO DESEOS</h4>
-                        <p class="text-xs text-gray-400 mb-4 tracking-normal">Netflix Extra + Prime Video + HBO Max + Disney Premium</p>
+        <!-- COMBOS DE STREAMING CORREGIDOS Y ACTUALIZADOS -->
+        <div class="mt-16 max-w-5xl mx-auto">
+            <h3 class="text-2xl md:text-3xl font-bold text-center mb-3 glow-text text-white">🚨 <span class="text-red-500">Combos</span> Disponibles 🚨</h3>
+            <p class="text-center text-gray-400 mb-10 text-sm tracking-normal">Lleva más plataformas pagando mucho menos. ¡Mira cuánto ahorras!</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- COMBO DESEOS -->
+                <div class="glass-panel p-6 rounded-2xl border-2 border-red-500/50 flex flex-col justify-between relative overflow-hidden shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:border-red-500 transition-all">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-bl-xl tracking-widest shadow-md">
+                        AHORRAS $11.200
                     </div>
+
                     <div>
-                        <p class="text-2xl font-bold text-white mb-4">$19.300</p>
-                        <button onclick="addToCart('Combo Deseos', 19300)" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm">Agregar Combo</button>
+                        <span class="text-xs text-red-400 font-bold tracking-widest uppercase">Combo Completo</span>
+                        <h4 class="font-extrabold text-xl text-white mt-1 mb-2">COMBO DESEOS</h4>
+                        <p class="text-xs text-gray-300 mb-6 bg-black/40 p-3 rounded-xl border border-white/10 tracking-normal">
+                            Netflix Extra + Prime Video + HBO Max + Disney Premium
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="space-y-1.5 border-t border-b border-gray-800 py-3 text-sm">
+                            <div class="flex justify-between text-gray-400">
+                                <span>Precio individual:</span>
+                                <span class="line-through text-gray-400">$30.500</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white font-bold">Precio Combo:</span>
+                                <span class="text-2xl font-black text-red-500 glow-text">$19.300</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addToCart('Combo Deseos', 19300)" class="w-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white py-3 rounded-xl font-bold text-sm tracking-widest transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+                            AGREGAR COMBO
+                        </button>
                     </div>
                 </div>
 
-                <div class="glass-panel p-6 rounded-xl border border-red-500/30 text-center flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-lg mb-2">COMBO FLASH</h4>
-                        <p class="text-xs text-gray-400 mb-4 tracking-normal">Netflix Extra + Max + Prime</p>
+                <!-- COMBO FLASH -->
+                <div class="glass-panel p-6 rounded-2xl border-2 border-red-500/50 flex flex-col justify-between relative overflow-hidden shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:border-red-500 transition-all">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-bl-xl tracking-widest shadow-md">
+                        AHORRAS $5.500
                     </div>
+
                     <div>
-                        <p class="text-2xl font-bold text-white mb-4">$17.500</p>
-                        <button onclick="addToCart('Combo Flash', 17500)" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm">Agregar Combo</button>
+                        <span class="text-xs text-red-400 font-bold tracking-widest uppercase">Combo Popular</span>
+                        <h4 class="font-extrabold text-xl text-white mt-1 mb-2">COMBO FLASH</h4>
+                        <p class="text-xs text-gray-300 mb-6 bg-black/40 p-3 rounded-xl border border-white/10 tracking-normal">
+                            Netflix Extra + Max + Prime Video
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="space-y-1.5 border-t border-b border-gray-800 py-3 text-sm">
+                            <div class="flex justify-between text-gray-400">
+                                <span>Precio individual:</span>
+                                <span class="line-through text-gray-400">$23.000</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white font-bold">Precio Combo:</span>
+                                <span class="text-2xl font-black text-red-500 glow-text">$17.500</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addToCart('Combo Flash', 17500)" class="w-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white py-3 rounded-xl font-bold text-sm tracking-widest transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+                            AGREGAR COMBO
+                        </button>
                     </div>
                 </div>
 
-                <div class="glass-panel p-6 rounded-xl border border-red-500/30 text-center flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-lg mb-2">COMBO ESPACIAL</h4>
-                        <p class="text-xs text-gray-400 mb-4 tracking-normal">Netflix Extra + Disney Premium</p>
+                <!-- COMBO ESPACIAL -->
+                <div class="glass-panel p-6 rounded-2xl border-2 border-red-500/50 flex flex-col justify-between relative overflow-hidden shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:border-red-500 transition-all">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-bl-xl tracking-widest shadow-md">
+                        AHORRAS $5.500
                     </div>
+
                     <div>
-                        <p class="text-2xl font-bold text-white mb-4">$12.800</p>
-                        <button onclick="addToCart('Combo Espacial', 12800)" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm">Agregar Combo</button>
+                        <span class="text-xs text-red-400 font-bold tracking-widest uppercase">Combo Dúo</span>
+                        <h4 class="font-extrabold text-xl text-white mt-1 mb-2">COMBO ESPACIAL</h4>
+                        <p class="text-xs text-gray-300 mb-6 bg-black/40 p-3 rounded-xl border border-white/10 tracking-normal">
+                            Netflix Extra + Disney Premium
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="space-y-1.5 border-t border-b border-gray-800 py-3 text-sm">
+                            <div class="flex justify-between text-gray-400">
+                                <span>Precio individual:</span>
+                                <span class="line-through text-gray-400">$18.300</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-white font-bold">Precio Combo:</span>
+                                <span class="text-2xl font-black text-red-500 glow-text">$12.800</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addToCart('Combo Espacial', 12800)" class="w-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white py-3 rounded-xl font-bold text-sm tracking-widest transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+                            AGREGAR COMBO
+                        </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
