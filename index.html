@@ -117,6 +117,70 @@
         .splash-logo {
             animation: pulseLogo 2s ease-in-out infinite alternate;
         }
+
+        /* --- ESTILOS DEL CARRITO HUD GAMER --- */
+        #cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(135deg, rgba(3, 3, 8, 0.95) 0%, rgba(11, 12, 22, 0.95) 100%);
+            border-left: 2px solid #00f0ff;
+            box-shadow: -10px 0 40px rgba(0, 240, 255, 0.25), inset 0 0 20px rgba(0, 85, 255, 0.1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+        #cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        /* Esquinas estilo sci-fi / cyberpunk */
+        .gamer-hud-box {
+            position: relative;
+            background: rgba(0, 240, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        .gamer-hud-box::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 8px; height: 8px;
+            border-top: 2px solid #00f0ff;
+            border-left: 2px solid #00f0ff;
+        }
+        .gamer-hud-box::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 8px; height: 8px;
+            border-bottom: 2px solid #00f0ff;
+            border-right: 2px solid #00f0ff;
+        }
+
+        .gamer-item-card {
+            background: rgba(11, 12, 22, 0.8);
+            border-left: 3px solid #00f0ff;
+            transition: all 0.2s ease;
+        }
+        .gamer-item-card:hover {
+            border-color: #7000ff;
+            box-shadow: 0 0 15px rgba(112, 0, 255, 0.3);
+            transform: translateX(-3px);
+        }
+
+        .gamer-checkout-btn {
+            background: linear-gradient(90deg, #0055ff, #00f0ff);
+            color: #030308;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        .gamer-checkout-btn:hover {
+            background: linear-gradient(90deg, #00f0ff, #7000ff);
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 10px rgba(112, 0, 255, 0.8);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative uppercase tracking-wider">
@@ -134,12 +198,46 @@
 
     <div class="scanline"></div>
 
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-400 text-white p-4 rounded-full shadow-[0_0_25px_rgba(34,197,94,0.7)] transition-all duration-300 hover:scale-110 flex items-center justify-center" aria-label="Chat de WhatsApp">
-        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    <!-- Botón Flotante Estilo HUD Gamer -->
+    <button onclick="toggleCart()" class="fixed bottom-6 right-6 z-50 bg-gamer-card border-2 border-gamer-neon hover:border-gamer-purple text-gamer-neon p-4 rounded-xl shadow-[0_0_25px_rgba(0,240,255,0.4)] transition-all duration-300 hover:scale-110 flex items-center justify-center font-bold group" aria-label="Abrir Carrito">
+        <svg class="w-7 h-7 fill-current group-hover:text-gamer-purple transition-colors" viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
         </svg>
-    </a>
+        <span id="cart-counter" class="absolute -top-2 -right-2 bg-gamer-purple text-white text-xs font-black w-6 h-6 rounded-md flex items-center justify-center shadow-[0_0_10px_rgba(112,0,255,0.8)] border border-gamer-neon">0</span>
+    </button>
+
+    <!-- Panel Lateral del Carrito (HUD Gamer Estilizado en Español) -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 z-50 w-full max-w-md flex flex-col p-6">
+        <!-- Cabecera del HUD -->
+        <div class="flex justify-between items-center border-b border-gamer-neon/30 pb-4 mb-4">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 bg-gamer-neon rounded-full animate-ping"></span>
+                <h3 class="text-xl font-extrabold text-white glow-text tracking-widest">[ INVENTARIO // EQUIPAMIENTO ]</h3>
+            </div>
+            <button onclick="toggleCart()" class="text-gamer-neon hover:text-white text-xl font-bold px-2.5 py-0.5 gamer-hud-box">✕</button>
+        </div>
+
+        <!-- Lista de Items Estilo Inventario -->
+        <div id="cart-items" class="flex-grow overflow-y-auto space-y-3 pr-2">
+            <div class="gamer-hud-box p-6 text-center text-gray-500 tracking-normal rounded-lg">
+                <p class="text-sm">SIN EQUIPAMIENTO SELECCIONADO</p>
+            </div>
+        </div>
+
+        <!-- Zona de Estadísticas y Botón de Acción -->
+        <div class="border-t border-gamer-neon/30 pt-4 mt-4 space-y-4">
+            <div class="gamer-hud-box p-3 rounded-lg flex justify-between items-center text-lg">
+                <span class="text-gamer-neon text-sm tracking-widest font-bold">COSTO TOTAL:</span>
+                <span id="cart-total" class="text-xl font-black text-white glow-text">$0</span>
+            </div>
+            <button onclick="checkoutWhatsApp()" class="gamer-checkout-btn w-full py-3.5 rounded-lg flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                Enviar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
 
     <!-- Header / Navbar -->
     <header class="glass-panel sticky top-0 z-40 p-4 border-b border-gamer-neon/30">
@@ -166,7 +264,7 @@
     <section id="juegos" class="relative pt-12 pb-12 overflow-hidden z-10">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white glow-text">Juegos PS4 / PS5</h2>
-            <p class="text-gamer-neon text-lg mb-10 max-w-2xl mx-auto tracking-normal font-bold">Consultar disponibilidad de cualquier titulo al chat de whatsapp</p>
+            <p class="text-gamer-neon text-lg mb-10 max-w-2xl mx-auto tracking-normal font-bold">Consultar disponibilidad de cualquier título al chat de WhatsApp</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
                 <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/1c7b75d8ed9271516546560d219ad0b22ee0a263b4537bd8.png" alt="Spider-Man 2" loading="lazy" class="rounded-xl shadow-[0_0_25px_rgba(0,85,255,0.6)] border-2 border-gamer-blue hover:border-gamer-neon hover:scale-105 transition-all duration-300 h-80 w-full object-cover">
@@ -174,9 +272,9 @@
             </div>
 
             <div class="inline-block">
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20consultar%20disponibilidad%20de%20un%20juego" target="_blank" rel="noopener noreferrer" class="bg-gamer-neon hover:bg-cyan-400 text-black px-8 py-3 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(0,240,255,0.6)] inline-block">
-                    Consultar por WhatsApp
-                </a>
+                <button onclick="addToCart('Consulta general de Juego PS4/PS5', 0)" class="bg-gamer-neon hover:bg-cyan-400 text-black px-8 py-3 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(0,240,255,0.6)]">
+                    Consultar Juego Personalizado
+                </button>
             </div>
         </div>
     </section>
@@ -185,7 +283,7 @@
     <section id="ps-plus" class="py-10 container mx-auto px-4 flex-grow z-10">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold mb-2 text-white glow-text">Membresías <span class="text-gamer-neon">PlayStation Plus</span></h2>
-            <p class="text-gray-400 tracking-normal">Selecciona el plan que mejor se adapte a ti y pídela directo por WhatsApp.</p>
+            <p class="text-gray-400 tracking-normal">Selecciona el plan que prefieras y agrégalo a tu carrito.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -204,7 +302,7 @@
                                 <p class="text-gray-400 text-xs">1 Mes</p>
                                 <p class="text-xl font-bold text-white">$12.500</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20ESSENTIAL%20de%201%20Mes%20por%20$12.500" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-bronze text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                            <button onclick="addToCart('PS Plus Essential - 1 Mes', 12500)" class="bg-gray-800 hover:bg-bronze text-white px-4 py-2 rounded-lg font-semibold transition-colors">Agregar</button>
                         </div>
                         
                         <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
@@ -212,7 +310,7 @@
                                 <p class="text-gray-400 text-xs">3 Meses</p>
                                 <p class="text-xl font-bold text-white">$28.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20ESSENTIAL%20de%203%20Meses%20por%20$28.900" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-bronze text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                            <button onclick="addToCart('PS Plus Essential - 3 Meses', 28900)" class="bg-gray-800 hover:bg-bronze text-white px-4 py-2 rounded-lg font-semibold transition-colors">Agregar</button>
                         </div>
                         
                         <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-bronze/70 relative overflow-hidden shadow-[inset_0_0_15px_rgba(205,127,50,0.2)]">
@@ -221,7 +319,7 @@
                                 <p class="text-gray-400 text-xs">12 Meses</p>
                                 <p class="text-xl font-bold text-white">$49.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20ESSENTIAL%20de%2012%20Meses%20por%20$49.900" target="_blank" rel="noopener noreferrer" class="bg-bronze hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_10px_rgba(205,127,50,0.5)]">Comprar</a>
+                            <button onclick="addToCart('PS Plus Essential - 12 Meses', 49900)" class="bg-bronze hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_10px_rgba(205,127,50,0.5)]">Agregar</button>
                         </div>
                     </div>
                 </div>
@@ -243,7 +341,7 @@
                                 <p class="text-gray-400 text-xs">1 Mes</p>
                                 <p class="text-xl font-bold text-white">$20.500</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20EXTRA%20de%201%20Mes%20por%20$20.500" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-silver hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                            <button onclick="addToCart('PS Plus Extra - 1 Mes', 20500)" class="bg-gray-800 hover:bg-silver hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Agregar</button>
                         </div>
                         
                         <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
@@ -251,7 +349,7 @@
                                 <p class="text-gray-400 text-xs">3 Meses</p>
                                 <p class="text-xl font-bold text-white">$37.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20EXTRA%20de%203%20Meses%20por%20$37.900" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-silver hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                            <button onclick="addToCart('PS Plus Extra - 3 Meses', 37900)" class="bg-gray-800 hover:bg-silver hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Agregar</button>
                         </div>
                         
                         <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-silver/70 shadow-[inset_0_0_15px_rgba(192,192,192,0.2)]">
@@ -259,7 +357,7 @@
                                 <p class="text-gray-400 text-xs">12 Meses</p>
                                 <p class="text-xl font-bold text-white">$69.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20EXTRA%20de%2012%20Meses%20por%20$69.900" target="_blank" rel="noopener noreferrer" class="bg-silver text-black hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(192,192,192,0.6)]">Comprar</a>
+                            <button onclick="addToCart('PS Plus Extra - 12 Meses', 69900)" class="bg-silver text-black hover:bg-gray-300 px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(192,192,192,0.6)]">Agregar</button>
                         </div>
                     </div>
                 </div>
@@ -280,7 +378,7 @@
                                 <p class="text-gray-400 text-xs">1 Mes</p>
                                 <p class="text-xl font-bold text-white">$25.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20DELUXE%20de%201%20Mes%20por%20$25.900" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gold hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                            <button onclick="addToCart('PS Plus Deluxe - 1 Mes', 25900)" class="bg-gray-800 hover:bg-gold hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Agregar</button>
                         </div>
                         
                         <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gray-800">
@@ -288,7 +386,7 @@
                                 <p class="text-gray-400 text-xs">3 Meses</p>
                                 <p class="text-xl font-bold text-white">$43.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20DELUXE%20de%203%20Meses%20por%20$43.900" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gold hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Comprar</a>
+                            <button onclick="addToCart('PS Plus Deluxe - 3 Meses', 43900)" class="bg-gray-800 hover:bg-gold hover:text-black text-white px-4 py-2 rounded-lg font-semibold transition-colors">Agregar</button>
                         </div>
                         
                         <div class="bg-black/60 p-4 rounded-xl flex justify-between items-center border border-gold/70 shadow-[inset_0_0_15px_rgba(255,215,0,0.2)]">
@@ -296,7 +394,7 @@
                                 <p class="text-gray-400 text-xs">12 Meses</p>
                                 <p class="text-xl font-bold text-white">$79.900</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20PS%20Plus%20DELUXE%20de%2012%20Meses%20por%20$79.900" target="_blank" rel="noopener noreferrer" class="bg-gold text-black hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(255,215,0,0.6)]">Comprar</a>
+                            <button onclick="addToCart('PS Plus Deluxe - 12 Meses', 79900)" class="bg-gold text-black hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold transition-colors shadow-[0_0_15px_rgba(255,215,0,0.6)]">Agregar</button>
                         </div>
                     </div>
                 </div>
@@ -337,9 +435,9 @@
                                 <p class="text-gray-400 text-xs">Inscripción</p>
                                 <p class="text-2xl font-extrabold text-gold">$10.000</p>
                             </div>
-                            <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20inscribirme%20al%20torneo%20individual%20de%20FC26%20por%20$10.000" target="_blank" rel="noopener noreferrer" class="bg-gamer-neon hover:bg-cyan-400 text-black px-6 py-3 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(0,240,255,0.6)]">
-                                Inscribirse
-                            </a>
+                            <button onclick="addToCart('Inscripción Torneo FC 26', 10000)" class="bg-gamer-neon hover:bg-cyan-400 text-black px-6 py-3 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(0,240,255,0.6)]">
+                                Inscribirse / Agregar
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -366,7 +464,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$6.500</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20YouTube%20Premium%20por%20$6.500" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('YouTube Premium', 6500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- Netflix -->
@@ -380,7 +478,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$10.800</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Netflix%20Extra%20por%20$10.800" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('Netflix Extra', 10800)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- Disney -->
@@ -394,7 +492,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$7.500</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Disney%20Premium%20por%20$7.500" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('Disney Premium', 7500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- HBO Max -->
@@ -408,7 +506,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$6.000</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20HBO%20Max%20por%20$6.000" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('HBO Max', 6000)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- Prime Video -->
@@ -422,7 +520,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$6.200</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Prime%20Video%20por%20$6.200" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('Prime Video', 6200)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- Vix -->
@@ -436,7 +534,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$8.500</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Vix%20por%20$8.500" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('Vix', 8500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
             <!-- Flujo TV -->
@@ -450,7 +548,7 @@
                         <p class="text-gamer-neon font-bold text-lg">$10.500</p>
                     </div>
                 </div>
-                <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20Flujo%20TV%20por%20$10.500" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Pedir</a>
+                <button onclick="addToCart('Flujo TV 3 Dispositivos', 10500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
         </div>
 
@@ -465,7 +563,7 @@
                     </div>
                     <div>
                         <p class="text-2xl font-bold text-white mb-4">$19.300</p>
-                        <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20el%20Combo%20Deseos%20por%20$19.300" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm block">Comprar Combo</a>
+                        <button onclick="addToCart('Combo Deseos', 19300)" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm">Agregar Combo</button>
                     </div>
                 </div>
 
@@ -476,7 +574,7 @@
                     </div>
                     <div>
                         <p class="text-2xl font-bold text-white mb-4">$17.500</p>
-                        <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20el%20Combo%20Flash%20por%20$17.500" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm block">Comprar Combo</a>
+                        <button onclick="addToCart('Combo Flash', 17500)" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm">Agregar Combo</button>
                     </div>
                 </div>
 
@@ -487,7 +585,7 @@
                     </div>
                     <div>
                         <p class="text-2xl font-bold text-white mb-4">$12.800</p>
-                        <a href="https://wa.me/5491165743873?text=Hola%20AXUL%20STORE,%20quiero%20comprar%20el%20Combo%20Espacial%20por%20$12.800" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm block">Comprar Combo</a>
+                        <button onclick="addToCart('Combo Espacial', 12800)" class="w-full bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-sm">Agregar Combo</button>
                     </div>
                 </div>
             </div>
@@ -502,28 +600,25 @@
         </div>
         
         <div class="max-w-3xl mx-auto space-y-6">
-            <!-- FAQ 1: Juegos -->
             <div class="glass-panel p-6 rounded-xl border border-gamer-neon/50">
                 <h3 class="text-xl font-bold text-gamer-neon mb-3">¿Cuál es la diferencia entre cuenta Primaria y Secundaria?</h3>
                 <ul class="text-gray-300 space-y-2 text-sm tracking-normal">
-                    <li><strong class="text-white">• Cuenta Primaria:</strong> Te permite jugar desde tu usuario personal, obtener trofeos en tu cuenta y jugar online sin restricciones. Es la opción ideal para tu juego favorito.</li>
-                    <li><strong class="text-white">• Cuenta Secundaria:</strong> Debes jugar desde la cuenta que nosotros te entregamos y es obligatorio estar conectado a internet. Es una opción más económica para disfrutar del título.</li>
+                    <li><strong class="text-white">• Cuenta Primaria:</strong> Te permite jugar desde tu usuario personal, obtener trofeos y jugar online.</li>
+                    <li><strong class="text-white">• Cuenta Secundaria:</strong> Debes jugar desde la cuenta que te entregamos conectados a internet.</li>
                 </ul>
             </div>
 
-            <!-- FAQ 2: Streaming -->
             <div class="glass-panel p-6 rounded-xl border border-gamer-neon/50">
                 <h3 class="text-xl font-bold text-gamer-neon mb-3">¿Cómo funcionan las cuentas de Streaming?</h3>
                 <p class="text-gray-300 text-sm tracking-normal">
-                    Todas nuestras cuentas de streaming (Netflix, Disney, HBO, etc.) funcionan por mes. Al contratar el servicio se te entrega una cuenta por 30 días, la cual puedes renovar mes a mes al finalizar el periodo para conservar tus perfiles y configuraciones sin perder nada.
+                    Funcionan por mes con opción a renovación mensual para conservar tus perfiles intactos.
                 </p>
             </div>
 
-            <!-- FAQ 3: Torneos -->
             <div class="glass-panel p-6 rounded-xl border border-gamer-neon/50">
                 <h3 class="text-xl font-bold text-gamer-neon mb-3">¿Cómo funcionan los torneos?</h3>
                 <p class="text-gray-300 text-sm tracking-normal">
-                    Los torneos funcionan con cupos y la información de cada torneo puedes verla en la sección torneos de tu juego favorito o preguntar en WhatsApp.
+                    Se juegan por llaves directas e individuales con cupos limitados.
                 </p>
             </div>
         </div>
@@ -537,6 +632,90 @@
     </footer>
 
     <script>
+        // Lógica del Carrito de Compras
+        let cart = [];
+
+        function toggleCart() {
+            const sidebar = document.getElementById("cart-sidebar");
+            sidebar.classList.toggle("open");
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            document.getElementById("cart-sidebar").classList.add("open");
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cartCounter = document.getElementById("cart-counter");
+            const cartTotal = document.getElementById("cart-total");
+
+            cartCounter.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="gamer-hud-box p-6 text-center text-gray-500 tracking-normal rounded-lg">
+                        <p class="text-sm">SIN EQUIPAMIENTO SELECCIONADO</p>
+                    </div>
+                `;
+                cartTotal.textContent = "$0";
+                return;
+            }
+
+            let html = "";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                html += `
+                    <div class="gamer-item-card p-3 rounded-lg flex justify-between items-center gap-2">
+                        <div>
+                            <h4 class="font-bold text-sm text-white tracking-wider">${item.name}</h4>
+                            <p class="text-gamer-neon text-xs font-bold">$${item.price.toLocaleString()} <span class="text-gray-400">x${item.quantity}</span></p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-400 gamer-hud-box px-2.5 py-1 text-xs font-bold">🗑️</button>
+                    </div>
+                `;
+            });
+
+            cartItemsContainer.innerHTML = html;
+            cartTotal.textContent = `$${total.toLocaleString()}`;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("El inventario está vacío. Selecciona equipamiento primero.");
+                return;
+            }
+
+            let message = "🎮 *NUEVO PEDIDO - AXUL STORE* 🎮\n\n*EQUIPAMIENTO SELECCIONADO:*\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                message += `• [${item.quantity}x] ${item.name} - $${subtotal.toLocaleString()}\n`;
+            });
+
+            message += `\n⚡ *TOTAL A PAGAR: $${total.toLocaleString()}*`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/5491165743873?text=${encodedMessage}`;
+            window.open(whatsappUrl, "_blank");
+        }
+
         // Ocultar pantalla de carga
         window.addEventListener("load", () => {
             const splashScreen = document.getElementById("splash-screen");
