@@ -260,7 +260,10 @@
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <img src="logo.jpeg" alt="Logo AXUL STORE" class="w-12 h-12 md:w-16 md:h-16 object-cover rounded-xl shadow-[0_0_15px_rgba(0,240,255,0.7)] border border-gamer-neon">
-                <h1 class="text-xl md:text-2xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h1>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-widest text-white">AXUL<span class="text-gamer-neon glow-text">STORE</span></h1>
+                    <span class="text-[10px] text-gamer-neon tracking-normal block">Lun a Vie: 11:00 AM - 7:00 PM</span>
+                </div>
             </div>
             
             <!-- Navegación de Escritorio -->
@@ -292,6 +295,9 @@
             <a href="#torneos" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Torneos</a>
             <a href="#streaming" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Streaming</a>
             <a href="#faq" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">FAQ</a>
+            <div class="text-xs text-gamer-neon py-2 border-b border-gamer-neon/10 tracking-normal">
+                🕒 Horarios: Lun a Vie de 11:00 AM a 7:00 PM
+            </div>
         </div>
         <div class="pt-2">
             <a href="https://www.instagram.com/axulstorearg" target="_blank" rel="noopener noreferrer" class="block text-center text-gamer-neon font-bold border border-gamer-neon/40 py-3 rounded-xl bg-gamer-card shadow-[0_0_15px_rgba(0,240,255,0.2)]">
@@ -725,9 +731,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="glass-panel py-6 mt-8 z-10 border-t border-gamer-neon/30">
-        <div class="container mx-auto px-4 text-center text-gray-400 text-xs">
-            <p>&copy; 2026 AXUL STORE. Todos los derechos reservados.</p>
+    <footer class="glass-panel py-8 mt-8 z-10 border-t border-gamer-neon/30">
+        <div class="container mx-auto px-4 text-center space-y-3">
+            <div class="gamer-hud-box inline-block px-6 py-2 rounded-xl text-xs text-gamer-neon">
+                🕒 Horarios de atención: <strong class="text-white">Lunes a Viernes de 11:00 AM a 7:00 PM</strong>
+            </div>
+            <p class="text-gray-400 text-xs">&copy; 2026 AXUL STORE. Todos los derechos reservados.</p>
         </div>
     </footer>
 
