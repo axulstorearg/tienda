@@ -240,6 +240,16 @@
             </div>
         </div>
 
+        <!-- Selección de Método de Pago en el Carrito -->
+        <div class="border-t border-gamer-neon/30 pt-3 mt-2 space-y-2">
+            <label class="text-xs text-gamer-neon font-bold tracking-widest block">💳 MÉTODO DE PAGO:</label>
+            <select id="payment-method" class="w-full bg-black/80 border border-gamer-neon/50 text-white text-xs p-2.5 rounded-lg focus:outline-none focus:border-gamer-neon tracking-normal font-semibold">
+                <option value="Mercado Pago Argentina">Mercado Pago Argentina</option>
+                <option value="Binance (Internacional)">Binance (Internacional)</option>
+                <option value="AstroPay (Internacional)">AstroPay (Internacional)</option>
+            </select>
+        </div>
+
         <!-- Zona de Estadísticas y Botón de Acción -->
         <div class="border-t border-gamer-neon/30 pt-4 mt-4 space-y-4">
             <div class="gamer-hud-box p-3 rounded-lg flex justify-between items-center text-lg">
@@ -272,6 +282,7 @@
                 <a href="#ps-plus" class="nav-link">PS Plus</a>
                 <a href="#torneos" class="nav-link">Torneos</a>
                 <a href="#streaming" class="nav-link">Streaming</a>
+                <a href="#pagos" class="nav-link">Pagos</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="https://www.instagram.com/axulstorearg" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gamer-neon transition-colors font-bold border border-white/20 px-3 py-1 rounded-lg">
                     @AXULSTOREARG
@@ -294,6 +305,7 @@
             <a href="#ps-plus" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">PS Plus</a>
             <a href="#torneos" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Torneos</a>
             <a href="#streaming" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Streaming</a>
+            <a href="#pagos" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">Pagos</a>
             <a href="#faq" onclick="toggleMobileMenu()" class="nav-link text-lg py-2 border-b border-gamer-neon/10">FAQ</a>
             <div class="text-xs text-gamer-neon py-2 border-b border-gamer-neon/10 tracking-normal">
                 🕒 Horarios: Lun a Vie de 11:00 AM a 7:00 PM
@@ -705,6 +717,52 @@
         </div>
     </section>
 
+    <!-- NUEVA SECCIÓN DE MÉTODOS DE PAGO -->
+    <section id="pagos" class="py-16 container mx-auto px-4 z-10 border-t border-gamer-neon/30 mt-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white glow-text">Métodos de <span class="text-gamer-neon">Pago</span></h2>
+            <p class="text-gray-400 tracking-normal">Aceptamos pagos locales en Argentina y opciones internacionales.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <!-- Mercado Pago -->
+            <div class="glass-panel p-6 rounded-2xl border border-gamer-neon/50 text-center space-y-4 hover:border-gamer-neon transition-all">
+                <div class="w-16 h-16 bg-blue-500/20 border-2 border-blue-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(0,158,227,0.3)]">
+                    🇦🇷
+                </div>
+                <h3 class="text-xl font-extrabold text-white">Mercado Pago</h3>
+                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">
+                    Exclusivo para Argentina. Transferencias, dinero en cuenta o tarjetas de forma rápida y segura.
+                </p>
+                <span class="inline-block bg-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Nacional</span>
+            </div>
+
+            <!-- Binance -->
+            <div class="glass-panel p-6 rounded-2xl border border-gamer-neon/50 text-center space-y-4 hover:border-gamer-neon transition-all">
+                <div class="w-16 h-16 bg-yellow-500/20 border-2 border-yellow-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(243,186,47,0.3)]">
+                    🪙
+                </div>
+                <h3 class="text-xl font-extrabold text-white">Binance</h3>
+                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">
+                    Ideal para clientes internacionales. Pagá con criptomonedas (USDT / BUSD) sin complicaciones.
+                </p>
+                <span class="inline-block bg-yellow-500/20 text-yellow-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Internacional</span>
+            </div>
+
+            <!-- AstroPay -->
+            <div class="glass-panel p-6 rounded-2xl border border-gamer-neon/50 text-center space-y-4 hover:border-gamer-neon transition-all">
+                <div class="w-16 h-16 bg-red-500/20 border-2 border-red-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(235,0,41,0.3)]">
+                    🌐
+                </div>
+                <h3 class="text-xl font-extrabold text-white">AstroPay</h3>
+                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">
+                    Billetera digital global aceptada para pagos internacionales de forma instantánea y segura.
+                </p>
+                <span class="inline-block bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Internacional</span>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
     <section id="faq" class="py-16 container mx-auto px-4 z-10 border-t border-gamer-neon/30 mt-10">
         <div class="text-center mb-12">
@@ -826,6 +884,8 @@
                 return;
             }
 
+            const selectedPaymentMethod = document.getElementById("payment-method").value;
+
             let message = "🎮 *NUEVO PEDIDO - AXUL STORE* 🎮\n\n*EQUIPAMIENTO SELECCIONADO:*\n";
             let total = 0;
 
@@ -835,6 +895,7 @@
                 message += `• [${item.quantity}x] ${item.name} - $${subtotal.toLocaleString()}\n`;
             });
 
+            message += `\n💳 *Método de Pago:* ${selectedPaymentMethod}`;
             message += `\n⚡ *TOTAL A PAGAR: $${total.toLocaleString()}*`;
 
             const encodedMessage = encodeURIComponent(message);
