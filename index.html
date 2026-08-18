@@ -118,7 +118,6 @@
             animation: pulseLogo 2s ease-in-out infinite alternate;
         }
 
-        /* --- ESTILOS DEL CARRITO HUD GAMER --- */
         #cart-sidebar {
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -131,7 +130,6 @@
             transform: translateX(0);
         }
 
-        /* --- ESTILOS DEL MENÚ MÓVIL (HAMBURGUESA) --- */
         #mobile-menu {
             transform: translateY(-100%);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
@@ -147,7 +145,6 @@
             visibility: visible;
         }
 
-        /* Esquinas estilo sci-fi / cyberpunk */
         .gamer-hud-box {
             position: relative;
             background: rgba(0, 240, 255, 0.03);
@@ -222,9 +219,8 @@
         <span id="cart-counter" class="absolute -top-2 -right-2 bg-gamer-purple text-white text-xs font-black w-6 h-6 rounded-md flex items-center justify-center shadow-[0_0_10px_rgba(112,0,255,0.8)] border border-gamer-neon">0</span>
     </button>
 
-    <!-- Panel Lateral del Carrito (HUD Gamer Estilizado en Español) -->
+    <!-- Panel Lateral del Carrito -->
     <div id="cart-sidebar" class="fixed inset-y-0 right-0 z-50 w-full max-w-md flex flex-col p-6">
-        <!-- Cabecera del HUD -->
         <div class="flex justify-between items-center border-b border-gamer-neon/30 pb-4 mb-4">
             <div class="flex items-center gap-2">
                 <span class="w-2.5 h-2.5 bg-gamer-neon rounded-full animate-ping"></span>
@@ -233,14 +229,12 @@
             <button onclick="toggleCart()" class="text-gamer-neon hover:text-white text-xl font-bold px-2.5 py-0.5 gamer-hud-box">✕</button>
         </div>
 
-        <!-- Lista de Items Estilo Inventario -->
         <div id="cart-items" class="flex-grow overflow-y-auto space-y-3 pr-2">
             <div class="gamer-hud-box p-6 text-center text-gray-500 tracking-normal rounded-lg">
                 <p class="text-sm">SIN EQUIPAMIENTO SELECCIONADO</p>
             </div>
         </div>
 
-        <!-- Selección de Método de Pago en el Carrito -->
         <div class="border-t border-gamer-neon/30 pt-3 mt-2 space-y-2">
             <label class="text-xs text-gamer-neon font-bold tracking-widest block">💳 MÉTODO DE PAGO:</label>
             <select id="payment-method" class="w-full bg-black/80 border border-gamer-neon/50 text-white text-xs p-2.5 rounded-lg focus:outline-none focus:border-gamer-neon tracking-normal font-semibold">
@@ -250,7 +244,6 @@
             </select>
         </div>
 
-        <!-- Zona de Estadísticas y Botón de Acción -->
         <div class="border-t border-gamer-neon/30 pt-4 mt-4 space-y-4">
             <div class="gamer-hud-box p-3 rounded-lg flex justify-between items-center text-lg">
                 <span class="text-gamer-neon text-sm tracking-widest font-bold">COSTO TOTAL:</span>
@@ -276,7 +269,6 @@
                 </div>
             </div>
             
-            <!-- Navegación de Escritorio -->
             <nav class="hidden md:flex gap-6 font-semibold items-center">
                 <a href="#juegos" class="nav-link active">Juegos PS4/PS5</a>
                 <a href="#ps-plus" class="nav-link">PS Plus</a>
@@ -289,7 +281,6 @@
                 </a>
             </nav>
 
-            <!-- Botón Menú Hamburguesa para Móviles -->
             <button onclick="toggleMobileMenu()" class="md:hidden text-gamer-neon border border-gamer-neon/50 p-2.5 rounded-xl gamer-hud-box flex items-center justify-center focus:outline-none" aria-label="Abrir Menú">
                 <svg id="menu-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
@@ -322,8 +313,35 @@
     <section id="juegos" class="relative pt-12 pb-12 overflow-hidden z-10">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white glow-text">Juegos PS4 / PS5</h2>
-            <p class="text-gamer-neon text-lg mb-10 max-w-2xl mx-auto tracking-normal font-bold">Consultar disponibilidad de cualquier título al chat de WhatsApp</p>
+            <p class="text-gamer-neon text-lg mb-8 max-w-2xl mx-auto tracking-normal font-bold">Consultar disponibilidad de cualquier título al chat de WhatsApp</p>
             
+            <!-- BANNER DE SORTEO GTA VI -->
+            <div class="my-8 max-w-4xl mx-auto">
+                <div class="glass-panel p-5 md:p-6 rounded-2xl border-2 border-gamer-purple shadow-[0_0_35px_rgba(112,0,255,0.4)] relative overflow-hidden bg-gradient-to-r from-purple-950/60 via-black to-blue-950/60 text-left">
+                    <div class="absolute -right-10 -bottom-10 opacity-20 pointer-events-none">
+                        <span class="text-9xl font-black text-gamer-neon">GTA VI</span>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10 text-center md:text-left">
+                        <div class="space-y-1">
+                            <span class="bg-gamer-neon text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest animate-pulse inline-block">
+                                ¡SORTEO EXCLUSIVO!
+                            </span>
+                            <h3 class="text-2xl md:text-3xl font-extrabold text-white glow-text mt-2">
+                                ¡PARTICIPA POR EL <span class="text-gamer-neon">GTA VI</span>!
+                            </h3>
+                            <p class="text-xs md:text-sm text-gray-300 tracking-normal">
+                                Con la compra de <strong class="text-white">cualquier Juego</strong> o <strong class="text-white">membresía PS Plus</strong>, ya estás participando automáticamente por el esperado GTA VI.
+                            </p>
+                        </div>
+                        <div class="shrink-0">
+                            <a href="#ps-plus" class="inline-block bg-gamer-purple hover:bg-purple-600 text-white text-xs font-bold px-6 py-3 rounded-xl tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(112,0,255,0.6)]">
+                                Ver Planes / Juegos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- SECCIÓN DE PRIMICIAS / PREVENTAS -->
             <div class="mb-12 max-w-4xl mx-auto">
                 <div class="inline-block bg-gamer-purple/30 text-gamer-neon border border-gamer-purple px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
@@ -336,7 +354,6 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                        <!-- FC 27 Standard Edition -->
                         <div class="bg-black/50 p-6 rounded-2xl border-2 border-gamer-neon/40 flex flex-col justify-between shadow-inner">
                             <div>
                                 <span class="text-[10px] bg-gamer-neon text-black font-bold px-2.5 py-0.5 rounded-md uppercase">Preventa</span>
@@ -357,7 +374,6 @@
                             </button>
                         </div>
 
-                        <!-- FC 27 Ultimate Edition -->
                         <div class="bg-black/50 p-6 rounded-2xl border-2 border-gamer-purple/40 flex flex-col justify-between shadow-inner">
                             <div>
                                 <span class="text-[10px] bg-gamer-purple text-white font-bold px-2.5 py-0.5 rounded-md uppercase">Preventa</span>
@@ -389,7 +405,6 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                        <!-- GTA VI PS5 Standard Edition -->
                         <div class="bg-black/50 p-6 rounded-2xl border-2 border-gamer-neon/40 flex flex-col justify-between shadow-inner">
                             <div>
                                 <span class="text-[10px] bg-gamer-neon text-black font-bold px-2.5 py-0.5 rounded-md uppercase">Preventa</span>
@@ -410,7 +425,6 @@
                             </button>
                         </div>
 
-                        <!-- GTA VI PS5 Ultimate Edition -->
                         <div class="bg-black/50 p-6 rounded-2xl border-2 border-gamer-purple/40 flex flex-col justify-between shadow-inner">
                             <div>
                                 <span class="text-[10px] bg-gamer-purple text-white font-bold px-2.5 py-0.5 rounded-md uppercase">Preventa</span>
@@ -621,7 +635,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <!-- YouTube -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-red-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.5)]">
@@ -635,7 +648,6 @@
                 <button onclick="addToCart('YouTube Premium', 3500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
-            <!-- Netflix -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-black border border-red-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(220,38,38,0.5)]">
@@ -649,7 +661,6 @@
                 <button onclick="addToCart('Netflix Extra', 10800)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
-            <!-- Disney -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-blue-900 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(30,58,138,0.5)]">
@@ -663,7 +674,6 @@
                 <button onclick="addToCart('Disney Premium', 7500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
-            <!-- HBO Max -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-purple-900 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(107,33,168,0.5)]">
@@ -677,7 +687,6 @@
                 <button onclick="addToCart('HBO Max', 6000)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
-            <!-- Prime Video -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-cyan-950 border border-cyan-500 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(6,182,212,0.5)]">
@@ -691,7 +700,6 @@
                 <button onclick="addToCart('Prime Video', 6200)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
-            <!-- Vix -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-orange-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(234,88,12,0.5)]">
@@ -705,7 +713,6 @@
                 <button onclick="addToCart('Vix', 8500)" class="bg-gray-800 hover:bg-gamer-neon hover:text-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors">Agregar</button>
             </div>
 
-            <!-- Flujo TV -->
             <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-4 hover:border-gamer-neon transition-all md:col-span-2 lg:col-span-3 max-w-md mx-auto w-full">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(37,99,235,0.5)]">
@@ -726,13 +733,10 @@
             <p class="text-center text-gray-400 mb-10 text-sm tracking-normal">Lleva más plataformas pagando mucho menos. ¡Mira cuánto ahorras!</p>
             
             <div class="grid md:grid-cols-3 gap-8">
-                
-                <!-- COMBO DESEOS -->
                 <div class="glass-panel p-6 rounded-2xl border-2 border-red-500/50 flex flex-col justify-between relative overflow-hidden shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:border-red-500 transition-all">
                     <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-bl-xl tracking-widest shadow-md">
                         AHORRAS $11.200
                     </div>
-
                     <div>
                         <span class="text-xs text-red-400 font-bold tracking-widest uppercase">Combo Completo</span>
                         <h4 class="font-extrabold text-xl text-white mt-1 mb-2">COMBO DESEOS</h4>
@@ -740,7 +744,6 @@
                             Netflix Extra + Prime Video + HBO Max + Disney Premium
                         </p>
                     </div>
-
                     <div class="space-y-4">
                         <div class="space-y-1.5 border-t border-b border-gray-800 py-3 text-sm">
                             <div class="flex justify-between text-gray-400">
@@ -752,19 +755,16 @@
                                 <span class="text-2xl font-black text-red-500 glow-text">$19.300</span>
                             </div>
                         </div>
-
                         <button onclick="addToCart('Combo Deseos', 19300)" class="w-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white py-3 rounded-xl font-bold text-sm tracking-widest transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)]">
                             AGREGAR COMBO
                         </button>
                     </div>
                 </div>
 
-                <!-- COMBO FLASH -->
                 <div class="glass-panel p-6 rounded-2xl border-2 border-red-500/50 flex flex-col justify-between relative overflow-hidden shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:border-red-500 transition-all">
                     <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-bl-xl tracking-widest shadow-md">
                         AHORRAS $5.500
                     </div>
-
                     <div>
                         <span class="text-xs text-red-400 font-bold tracking-widest uppercase">Combo Popular</span>
                         <h4 class="font-extrabold text-xl text-white mt-1 mb-2">COMBO FLASH</h4>
@@ -772,7 +772,6 @@
                             Netflix Extra + Max + Prime Video
                         </p>
                     </div>
-
                     <div class="space-y-4">
                         <div class="space-y-1.5 border-t border-b border-gray-800 py-3 text-sm">
                             <div class="flex justify-between text-gray-400">
@@ -784,19 +783,16 @@
                                 <span class="text-2xl font-black text-red-500 glow-text">$17.500</span>
                             </div>
                         </div>
-
                         <button onclick="addToCart('Combo Flash', 17500)" class="w-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white py-3 rounded-xl font-bold text-sm tracking-widest transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)]">
                             AGREGAR COMBO
                         </button>
                     </div>
                 </div>
 
-                <!-- COMBO ESPACIAL -->
                 <div class="glass-panel p-6 rounded-2xl border-2 border-red-500/50 flex flex-col justify-between relative overflow-hidden shadow-[0_0_25px_rgba(239,68,68,0.2)] hover:border-red-500 transition-all">
                     <div class="absolute top-0 right-0 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-bl-xl tracking-widest shadow-md">
                         AHORRAS $5.500
                     </div>
-
                     <div>
                         <span class="text-xs text-red-400 font-bold tracking-widest uppercase">Combo Dúo</span>
                         <h4 class="font-extrabold text-xl text-white mt-1 mb-2">COMBO ESPACIAL</h4>
@@ -804,7 +800,6 @@
                             Netflix Extra + Disney Premium
                         </p>
                     </div>
-
                     <div class="space-y-4">
                         <div class="space-y-1.5 border-t border-b border-gray-800 py-3 text-sm">
                             <div class="flex justify-between text-gray-400">
@@ -816,13 +811,11 @@
                                 <span class="text-2xl font-black text-red-500 glow-text">$12.800</span>
                             </div>
                         </div>
-
                         <button onclick="addToCart('Combo Espacial', 12800)" class="w-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white py-3 rounded-xl font-bold text-sm tracking-widest transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)]">
                             AGREGAR COMBO
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -835,45 +828,30 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <!-- Mercado Pago -->
             <div class="glass-panel p-6 rounded-2xl border border-gamer-neon/50 text-center space-y-4 hover:border-gamer-neon transition-all">
-                <div class="w-16 h-16 bg-blue-500/20 border-2 border-blue-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(0,158,227,0.3)]">
-                    🇦🇷
-                </div>
+                <div class="w-16 h-16 bg-blue-500/20 border-2 border-blue-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(0,158,227,0.3)]">🇦🇷</div>
                 <h3 class="text-xl font-extrabold text-white">Mercado Pago</h3>
-                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">
-                    Exclusivo para Argentina. Transferencias, dinero en cuenta o tarjetas de forma rápida y segura.
-                </p>
+                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">Exclusivo para Argentina. Transferencias, dinero en cuenta o tarjetas de forma rápida y segura.</p>
                 <span class="inline-block bg-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Nacional</span>
             </div>
 
-            <!-- Binance -->
             <div class="glass-panel p-6 rounded-2xl border border-gamer-neon/50 text-center space-y-4 hover:border-gamer-neon transition-all">
-                <div class="w-16 h-16 bg-yellow-500/20 border-2 border-yellow-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(243,186,47,0.3)]">
-                    🪙
-                </div>
+                <div class="w-16 h-16 bg-yellow-500/20 border-2 border-yellow-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(243,186,47,0.3)]">🪙</div>
                 <h3 class="text-xl font-extrabold text-white">Binance</h3>
-                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">
-                    Ideal para clientes internacionales. Pagá con criptomonedas (USDT / BUSD) sin complicaciones.
-                </p>
+                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">Ideal para clientes internacionales. Pagá con criptomonedas (USDT / BUSD) sin complicaciones.</p>
                 <span class="inline-block bg-yellow-500/20 text-yellow-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Internacional</span>
             </div>
 
-            <!-- AstroPay -->
             <div class="glass-panel p-6 rounded-2xl border border-gamer-neon/50 text-center space-y-4 hover:border-gamer-neon transition-all">
-                <div class="w-16 h-16 bg-red-500/20 border-2 border-red-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(235,0,41,0.3)]">
-                    🌐
-                </div>
+                <div class="w-16 h-16 bg-red-500/20 border-2 border-red-400 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(235,0,41,0.3)]">🌐</div>
                 <h3 class="text-xl font-extrabold text-white">AstroPay</h3>
-                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">
-                    Billetera digital global aceptada para pagos internacionales de forma instantánea y segura.
-                </p>
+                <p class="text-xs text-gray-300 tracking-normal leading-relaxed">Billetera digital global aceptada para pagos internacionales de forma instantánea y segura.</p>
                 <span class="inline-block bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Internacional</span>
             </div>
         </div>
     </section>
 
-    <!-- Preguntas Frecuentes (FAQ) -->
+    <!-- FAQ -->
     <section id="faq" class="py-16 container mx-auto px-4 z-10 border-t border-gamer-neon/30 mt-10">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white glow-text">Preguntas <span class="text-gamer-neon">Frecuentes</span></h2>
@@ -891,9 +869,7 @@
 
             <div class="glass-panel p-6 rounded-xl border border-gamer-neon/50">
                 <h3 class="text-xl font-bold text-gamer-neon mb-3">¿Cómo funcionan las cuentas de Streaming?</h3>
-                <p class="text-gray-300 text-sm tracking-normal">
-                    Funcionan por mes con opción a renovación mensual para conservar tus perfiles intactos.
-                </p>
+                <p class="text-gray-300 text-sm tracking-normal">Funcionan por mes con opción a renovación mensual para conservar tus perfiles intactos.</p>
             </div>
         </div>
     </section>
@@ -909,7 +885,6 @@
     </footer>
 
     <script>
-        // Lógica del Carrito de Compras
         let cart = [];
 
         function toggleCart() {
@@ -918,7 +893,6 @@
             document.getElementById("mobile-menu").classList.remove("open");
         }
 
-        // Lógica del Menú Hamburguesa para Móviles
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById("mobile-menu");
             const menuIcon = document.getElementById("menu-icon");
@@ -939,7 +913,6 @@
                 cart.push({ name, price, quantity: 1 });
             }
             updateCartUI();
-            // NOTA: Se removió la apertura automática del carrito para una experiencia fluida en móviles.
             document.getElementById("mobile-menu").classList.remove("open");
         }
 
@@ -993,7 +966,6 @@
             }
 
             const selectedPaymentMethod = document.getElementById("payment-method").value;
-
             let message = "🎮 *NUEVO PEDIDO - AXUL STORE* 🎮\n\n*EQUIPAMIENTO SELECCIONADO:*\n";
             let total = 0;
 
@@ -1018,7 +990,6 @@
             window.open(whatsappUrl, "_blank");
         }
 
-        // Ocultar pantalla de carga
         window.addEventListener("load", () => {
             const splashScreen = document.getElementById("splash-screen");
             setTimeout(() => {
@@ -1026,7 +997,6 @@
             }, 2000);
         });
 
-        // Intersection Observer optimizado para la navegación
         const sections = document.querySelectorAll("section[id]");
         const navLinks = document.querySelectorAll("nav a[href^='#'], #mobile-menu a[href^='#']");
 
